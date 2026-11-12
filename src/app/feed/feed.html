@@ -29,34 +29,52 @@
       <div>
         <h3 class="text-center mb-4 font-monospace">Digite abaixo os seus comentários</h3>
         <div class="form-group">
-          <label for="title" class="font-monospace">Título</label>
+          <label for="name" class="font-monospace">Nome</label>
           <input
             type="text"
-            name="title"
-            id="title"
+            name="name"
+            id="name"
             class="form-control"
-            placeholder="Digite o título da postagem"
+            placeholder="Digite o seu nome da postagem"
+            [(ngModel)]="post.name"
           />
         </div>
         <div class="form-group">
-          <label for="text" class="font-monospace">Texto</label>
+          <label for="message" class="font-monospace">Mensagem</label>
           <textarea
             type="text"
-            name="text"
-            id="text"
+            name="message"
+            id="message"
             class="form-control"
             cols="30"
             rows="4"
             placeholder="Digite a sua mensagem"
+            [(ngModel)]="post.message"
           ></textarea>
         </div>
         <div class="d-flex justify-content-end mt-3">
-          <button type="button" class="btn btn-outline-info">Publicar</button>
+          <button type="button" class="btn btn-outline-info w-25" (click)="handleSubmitComment()">
+            Publicar
+          </button>
         </div>
       </div>
       <hr class="mt-5 mb-5" />
 
       <h3 class="text-center mb-4 font-monospace">Comentário adicionados</h3>
+
+      <div class="container">
+        @for (post of listPost(); track post.id) {
+          <div class="card mb-4">
+            <div class="card-header">
+              <h5 class="card-title">{{ post.createdDate | date: 'EEEE, MMMM d, y' }}</h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">{{ post.name }}</p>
+              <p class="card-text">{{ post.message }}</p>
+            </div>
+          </div>
+        }
+      </div>
     </div>
   </div>
 </div>
